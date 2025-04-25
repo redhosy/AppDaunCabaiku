@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify
+from app import create_app
 
-app = Flask(__name__)
+app = create_app()
 
-@app.route('/')
-def home():
-    return "Backend Flask Aktif"
+if __name__ == '__main__':
+    app.run(debug=true)
