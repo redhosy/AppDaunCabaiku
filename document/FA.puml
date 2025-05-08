@@ -1,0 +1,32 @@
+@startuml
+start
+
+:Impor Pustaka;
+:Tetapkan Path Dataset;
+:Pisahkan Data (Train, Val, Test);
+:Tentukan Augmentasi Data;
+:Buat Generator Data;
+:Bangun Model CNN;
+:Kompilasi Model CNN (Optimizer, Loss, Metrik);
+:Latih Model CNN (dengan Data Generator);
+:Simpan Model CNN Terbaik (Berdasarkan Validasi);
+:Evaluasi Model CNN pada Data Test;
+
+if (Performa CNN OK?) then (Ya)
+  :Ekstraksi Fitur CNN dari Data Test;
+  :Inisialisasi Model SVM (dengan Parameter);
+  :Latih Model SVM (dengan Fitur CNN);
+  :Evaluasi Model SVM pada Data Test;
+
+  if (Performa SVM OK?) then (Ya)
+    stop
+  else (Tidak)
+    -> [Back] :Inisialisasi Model SVM (ulang);
+    --> [Loop] back to "Latih Model SVM (dengan Fitur CNN)";
+  endif
+
+else (Tidak)
+  -> [Back] :Latih Model CNN (ulang);
+  --> [Loop] back to "Latih Model CNN (dengan Data Generator)";
+endif
+@enduml
