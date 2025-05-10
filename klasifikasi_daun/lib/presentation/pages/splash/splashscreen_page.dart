@@ -15,7 +15,7 @@ class _SplashscreenState extends State<Splashscreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds:18),
+        const Duration(seconds:5),
         () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (BuildContext context) => const OnboardingPage())));
   }
@@ -26,11 +26,11 @@ class _SplashscreenState extends State<Splashscreen> {
       backgroundColor: Color(0xFF328E6E),
       body: SafeArea(
         child: Center(
-            child: Lottie.network(
-          'https://lottie.host/efe58d7d-6e37-4501-b1be-d33e12c5b8d3/uPob3jxtJm.json',
+            child: Lottie.asset(
+          'assets/animasilogo.json',
           width: 200,
           height: 200,
-          fit: BoxFit.fill,
+          fit: BoxFit.contain,
         ),
       ),
       ),

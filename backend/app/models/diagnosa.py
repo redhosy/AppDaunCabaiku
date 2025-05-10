@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, Date, Enum, Float, ForeignKey
+from sqlalchemy import Column, Integer,Date, String, Enum, Float, ForeignKey, DateTime 
 from sqlalchemy.orm import relationship
-from app.database import Base
+from config import Base
 from enum import Enum as PyEnum
+import datetime
 
 
 class KondisiDaun(PyEnum):
@@ -20,5 +21,7 @@ class Diagnosa(Base):
     rekomendasi = Column(String)
     kategori = Column(Enum(KondisiDaun))
     akurasi = Column(Float)
+    create_date = Column(DateTime, default=datetime.datetime.now())
+    update_date = Column(DateTime)
 
-    user = relationship("User", back_populates="diagnosa")
+    users = relationship("Users", back_populates="diagnosa")

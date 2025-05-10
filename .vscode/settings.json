@@ -1,0 +1,8 @@
+{
+    "cSpell.words": [
+        "relaionship"
+    ],
+    "python.analysis.extraPaths": [
+        "./backend/app"
+    ]
+}

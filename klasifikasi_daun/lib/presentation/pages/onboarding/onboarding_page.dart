@@ -17,8 +17,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Welcome to the Onboarding Page!',
-                style: TextStyle(fontSize: 24),
+                'CapsiCheck',
+                style: TextStyle(fontFamily:, fontSize: 36, color: Color.fromRGBO(239, 150, 81, 1),  ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(

@@ -1,23 +1,15 @@
 from fastapi import FastAPI
-from app.routers import user, diagnosa, grafik
+from config import engine
+
+import app.models.users as user_table
+
+import app.routers.users as user_routers
+
+user_table.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
-
-# CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# include_router
-app.include_router(user.router)
-# app.include_router(diagnosa.router)
-# app.include_router(grafik.router)
+app.include_router(user_routers.router)
 
 
     

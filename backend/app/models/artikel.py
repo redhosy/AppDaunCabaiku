@@ -1,6 +1,7 @@
-from sqlalchemy import Integer, String, Column, Date
+from sqlalchemy import Integer, String, Column, Date, DateTime
 from datetime import date
-from app.database import Base
+import datetime
+from config import Base
 
 
 class Artikel(Base):
@@ -13,3 +14,5 @@ class Artikel(Base):
     tanggal = Column(Date, default = date.today)
     kategori = Column(String, nullable=False)
     gambar = Column(String, nullable=False)
+    create_date = Column(DateTime, default=datetime.datetime.now())
+    update_date = Column(DateTime)

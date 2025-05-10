@@ -12,8 +12,8 @@ config = context.config
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from app.database import Base
-from app.models import user, diagnosa, statistik, artikel
+from config import Base
+from app.models import users, diagnosa, statistik, artikel
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
