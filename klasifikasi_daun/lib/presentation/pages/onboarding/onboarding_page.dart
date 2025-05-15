@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:klasifikasi_daun/presentation/pages/auth/login_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -32,20 +34,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
     super.dispose();
   }
 
-  
-
-  void _navigateToNext() {
+  void _navigateToNext() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('onboarding_done', true);
     if (_currentPage < _contents.length - 1) {
       _pageController.nextPage(
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder:(_) => LoginPage()));
-      print('Navigasi ke halaman berikutnya setelah onboarding');
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(_) => LoginPage()));
     }
   }
 
   void _skip() {
-    _pageController.jumpToPage(_contents.length - 0);
+    _pageController.jumpToPage(_contents.length - 1);
   }
 
   void _onPageChange(int page) {
@@ -77,7 +78,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ],
             ),
             const SizedBox(height: 24),
-
             Expanded(
               child: PageView.builder(
                 controller: _pageController,
@@ -109,7 +109,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 },
               ),
             ),
-            
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -120,9 +119,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 ),
               ),
             ),
-
             const SizedBox(height: 24),
-
             Container(
               margin: const EdgeInsets.only(bottom: 30),
               child: _currentPage == _contents.length - 1
@@ -179,7 +176,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
   }
 
   Widget _buildPlaceholderImage1() {
-    return Image.asset('assets/onboarding1.png', scale: 1.2,);
+    return Image.asset(
+      'assets/onboarding1.png',
+      scale: 1.2,
+    );
   }
 
   Widget _buildPlaceholderImage2() {

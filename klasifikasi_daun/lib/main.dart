@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:klasifikasi_daun/presentation/pages/auth/login_page.dart';
+import 'package:klasifikasi_daun/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:klasifikasi_daun/presentation/pages/splash/splashscreen_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool onboardingDone = prefs.getBool('onboarding_done') ?? false;
+  runApp(MyApp(onboardingDone: onboardingDone));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onboardingDone;
+  const MyApp({super.key, required this.onboardingDone});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      // initialRoute: onboardingDone ? '/login' : '/onboarding',
+      title: 'ChapsiCheck',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      home: const Splashscreen(),
+      home: Splashscreen(onboardingDone: onboardingDone),
+      routes: {
+      '/onboarding':(context)=> const OnboardingPage(),
+      '/login':(context)=> const LoginPage(),
+      },
     );
   }
 }
