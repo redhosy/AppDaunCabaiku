@@ -6,9 +6,9 @@ import datetime
 
 
 class KondisiDaun(PyEnum):
-        SEHAT = "sehat"
-        KUNING = "daun kuning"
-        KERITING = "daun keriting"
+        SEHAT = "SEHAT"
+        KERITING = "KERITING"
+        KUNING = "KUNING"
 
 class Diagnosa(Base):
     __tablename__ = "diagnosa"
@@ -24,4 +24,5 @@ class Diagnosa(Base):
     create_date = Column(DateTime, default=datetime.datetime.now())
     update_date = Column(DateTime)
 
+        # Relationships
     users = relationship("Users", back_populates="diagnosa")

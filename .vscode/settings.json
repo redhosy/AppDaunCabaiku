@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
+        "akurasi",
         "relaionship"
     ],
     "python.analysis.extraPaths": [
         "./backend/app"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

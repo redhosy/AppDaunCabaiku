@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:klasifikasi_daun/presentation/pages/auth/forgot_password_page.dart';
 import 'package:klasifikasi_daun/presentation/pages/auth/login_page.dart';
+import 'package:klasifikasi_daun/presentation/pages/auth/register_page.dart';
+import 'package:klasifikasi_daun/presentation/pages/home/home_page.dart';
 import 'package:klasifikasi_daun/presentation/pages/onboarding/onboarding_page.dart';
 import 'package:klasifikasi_daun/presentation/pages/splash/splashscreen_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,14 +26,17 @@ class MyApp extends StatelessWidget {
       // initialRoute: onboardingDone ? '/login' : '/onboarding',
       title: 'ChapsiCheck',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF3F7D58)),
         useMaterial3: true,
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       home: Splashscreen(onboardingDone: onboardingDone),
       routes: {
       '/onboarding':(context)=> const OnboardingPage(),
-      '/login':(context)=> const LoginPage(),
+      '/login':(context)=> LoginPage(),
+      '/register':(context)=> RegisterPage(),
+      '/forgot':(context)=> ForgotPasswordPage(),
+      '/home':(context)=> HomePage(),
       },
     );
   }

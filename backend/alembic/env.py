@@ -13,7 +13,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import Base
-from app.models import users, diagnosa, statistik, artikel
+from app.models import users, diagnosa
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
